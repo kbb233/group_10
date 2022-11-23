@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 public class AnnouncementDataSource {
     private SQLiteDatabase database;
     private AnnouncementDBHelper dbHelper;
@@ -95,5 +97,35 @@ public class AnnouncementDataSource {
             cursor.close();
         }
         return ann;
+    }
+
+    public ArrayList<Announcement_Unit> getAnnouncements(String field,String order){
+        ArrayList<Announcement_Unit> list = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM announcement ORDER BY "+ field+" "+order;
+            Cursor cursor = database.rawQuery(query,null);
+            Announcement_Unit ann;
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()){
+                ann = new Announcement_Unit();
+                ann.setAnnounceId(cursor.getInt(0));
+                ann.setTitle(cursor.getString(1));
+                ann.setContent(cursor.getString(2));
+                ann.setYear(cursor.getInt(3));
+                ann.setMonth(cursor.getInt(4));
+                ann.setDay(cursor.getInt(5));
+                ann.setHour(cursor.getInt(6));
+                ann.setMinute(cursor.getInt(7));
+                ann.setSecond(cursor.getInt(8));
+                ann.setTime(cursor.getInt(9));
+                list.add(ann);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        catch (Exception e){
+            list = new ArrayList<>();
+        }
+        return list;
     }
 }
