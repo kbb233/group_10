@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="25dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@id/announcement_recycle"
         app:layout_constraintRight_toRightOf="@id/announcement_recycle"
