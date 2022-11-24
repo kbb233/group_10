@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.example.group_10.Announcement.AnnouncementAdapter;
 import com.example.group_10.Announcement.AnnouncementDataSource;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         createAnnouncement();
+        initDeleteSwitch();
     }
 
     public void onResume(){
@@ -77,4 +80,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void initDeleteSwitch() {
+        Switch s = findViewById(R.id.switch_delete);
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                boolean status = compoundButton.isChecked();
+                mAdapter.setDelete(status);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
 }

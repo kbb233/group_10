@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,15 +19,21 @@ public class AnnouncementAdapter extends RecyclerView.Adapter {
     private ArrayList<Announcement_Unit> announceList;
     private View.OnClickListener mOnItemClickListener;
     private Context parentContext;
+    private boolean isDeleting;
 
     public void setOnItemClickListener(View.OnClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
+    }
+
+    public void setDelete(boolean status) {
+        isDeleting = status;
     }
 
     public class AnnouncementViewHolder extends RecyclerView.ViewHolder {
         public TextView textTitle,textContent
                 ,textYear,textMonth,textDay
                 ,textHour,textMinute,textSecond;
+        public Button deleteButton;
         public AnnouncementViewHolder(View v){
             super(v);
             textTitle = v.findViewById(R.id.textTitle);
@@ -36,8 +44,12 @@ public class AnnouncementAdapter extends RecyclerView.Adapter {
             textHour = v.findViewById(R.id.textHour);
             textMinute = v.findViewById(R.id.textMinute);
             textSecond = v.findViewById(R.id.textSecond);
+            deleteButton = v.findViewById(R.id.button_delete);
         }
 
+        public Button getDeleteButton(){
+            return deleteButton;
+        }
         public TextView getTitleTextView() {
             return textTitle;
         }
@@ -77,7 +89,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         AnnouncementViewHolder avh = (AnnouncementViewHolder)holder;
         avh.getTitleTextView().setText(announceList.get(position).getTitle());
         avh.getContentTextView().setText(announceList.get(position).getContent());
@@ -87,6 +99,36 @@ public class AnnouncementAdapter extends RecyclerView.Adapter {
         avh.getHourTextView().setText(String.valueOf(announceList.get(position).getHour()));
         avh.getMinuteTextView().setText(String.valueOf(announceList.get(position).getMinute()));
         avh.getSecondTextView().setText(String.valueOf(announceList.get(position).getSecond()));
+
+        if(isDeleting){
+            avh.getDeleteButton().setVisibility(View.VISIBLE);
+            avh.getDeleteButton().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteItem(position);
+                }
+            });
+        }
+        else{
+            avh.getDeleteButton().setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void deleteItem(int position) {
+        Announcement_Unit ann = announceList.get(position);
+        AnnouncementDataSource ds = new AnnouncementDataSource(parentContext);
+        try {
+            ds.open();
+            boolean didDelete = ds.deleteAnnouncement(ann.getAnnounceId());
+            ds.close();
+            if (didDelete){
+                announceList.remove(position);
+                notifyDataSetChanged();
+            }
+            else{
+                Toast.makeText(parentContext, "Delete Failed!", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){}
     }
 
     @Override

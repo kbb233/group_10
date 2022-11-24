@@ -128,4 +128,15 @@ public class AnnouncementDataSource {
         }
         return list;
     }
+
+    public boolean deleteAnnouncement(int announceId) {
+        boolean didDelete = false;
+        try {
+            didDelete = database.delete("announcement", "id=" + announceId, null) > 0;
+        }
+        catch (Exception e) {
+            //Do nothing -return value already set to false
+        }
+        return didDelete;
+    }
 }
