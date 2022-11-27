@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.group_10.event.Event_Unit;
+
 import java.util.ArrayList;
 
 public class AnnouncementDataSource {
@@ -139,4 +141,5 @@ public class AnnouncementDataSource {
         }
         return didDelete;
     }
+
 }

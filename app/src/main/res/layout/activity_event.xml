@@ -2,11 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/greenbg"
-    tools:context=".MainActivity">
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -68,12 +66,12 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/announcement_text"
+        android:id="@+id/event_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginStart="30dp"
-        android:text="Announcement"
+        android:layout_marginLeft="20dp"
+        android:text="Event List"
         android:textAlignment="textStart"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -82,35 +80,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/announcement_recycle"
+        android:id="@+id/event_recycle"
         android:layout_width="409dp"
-        android:layout_height="602dp"
+        android:layout_height="590dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/announcement_text" />
+        app:layout_constraintTop_toBottomOf="@+id/event_text" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_announcement_btn"
+        android:id="@+id/add_event_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="50dp"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@id/announcement_recycle"
-        app:layout_constraintRight_toRightOf="@id/announcement_recycle"
+        app:layout_constraintBottom_toBottomOf="@id/event_recycle"
+        app:layout_constraintRight_toRightOf="@id/event_recycle"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <Switch
-        android:id="@+id/switch_delete"
+        android:id="@+id/switch_delete_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="20dp"
         android:text="Switch"
-        app:layout_constraintStart_toEndOf="@+id/announcement_text"
+        app:layout_constraintStart_toEndOf="@+id/event_text"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

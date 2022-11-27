@@ -1,7 +1,6 @@
 package com.example.group_10;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.Switch;
 
 import com.example.group_10.Announcement.AnnouncementAdapter;
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         createAnnouncement();
         initDeleteSwitch();
+        initEventbtn();
     }
 
     public void onResume(){
@@ -88,6 +89,18 @@ public class MainActivity extends AppCompatActivity {
                 boolean status = compoundButton.isChecked();
                 mAdapter.setDelete(status);
                 mAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    public void initEventbtn(){
+        ImageButton eventbtn = findViewById(R.id.Event_Button);
+        eventbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,EventActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
     }
