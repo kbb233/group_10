@@ -1,4 +1,4 @@
-package com.example.group_10.event;
+package com.example.group_10.Event;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.group_10.EventActivity;
-import com.example.group_10.MainActivity;
 import com.example.group_10.R;
 
 public class Event_Creation extends AppCompatActivity implements DatePickerFragment.SaveDateListener , TimePickerFragment.SaveTimeListener{

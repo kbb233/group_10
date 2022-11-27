@@ -1,15 +1,12 @@
-package com.example.group_10.event;
+package com.example.group_10.Event;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.group_10.Announcement.Announcement_Unit;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class EventDataSource {
     private SQLiteDatabase database;

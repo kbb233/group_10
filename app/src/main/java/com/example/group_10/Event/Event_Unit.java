@@ -1,6 +1,4 @@
-package com.example.group_10.event;
-
-import java.util.Calendar;
+package com.example.group_10.Event;
 
 public class Event_Unit {
     private String title;

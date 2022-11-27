@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         createAnnouncement();
         initDeleteSwitch();
         initEventbtn();
+        initChatbtn();
+        initProfilebtn();
     }
 
     public void onResume(){
@@ -99,6 +101,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,EventActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void initChatbtn(){
+        ImageButton chatbtn = findViewById(R.id.Chat_Button);
+        chatbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ChatActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+    }
+    public void initProfilebtn(){
+        ImageButton profilebtn = findViewById(R.id.Profile_Button);
+        profilebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

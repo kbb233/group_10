@@ -12,11 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.group_10.Announcement.Announcement_Creation;
-import com.example.group_10.event.EventAdapter;
-import com.example.group_10.event.EventDataSource;
-import com.example.group_10.event.Event_Creation;
-import com.example.group_10.event.Event_Unit;
+import com.example.group_10.Event.EventAdapter;
+import com.example.group_10.Event.EventDataSource;
+import com.example.group_10.Event.Event_Creation;
+import com.example.group_10.Event.Event_Unit;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -41,8 +40,10 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         initMainbtn();
+        initChatbtn();
         createEvent();
         initDeleteSwitch();
+        initProfilebtn();
     }
     public void onResume() {
         super.onResume();
@@ -97,6 +98,28 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EventActivity.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+    }
+    public void initChatbtn(){
+        ImageButton chatbtn = findViewById(R.id.Chat_Button);
+        chatbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EventActivity.this,ChatActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+    }
+    public void initProfilebtn(){
+        ImageButton profilebtn = findViewById(R.id.Profile_Button);
+        profilebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EventActivity.this,ProfileActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

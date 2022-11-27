@@ -1,8 +1,7 @@
-package com.example.group_10.event;
+package com.example.group_10.Event;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.DatePicker;
 import androidx.fragment.app.DialogFragment;

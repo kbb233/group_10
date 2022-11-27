@@ -1,4 +1,4 @@
-package com.example.group_10.event;
+package com.example.group_10.Event;
 
 import android.content.Context;
 import android.util.Log;
